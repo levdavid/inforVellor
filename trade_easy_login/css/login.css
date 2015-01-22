@@ -66,3 +66,11 @@ body {
 	height : 26px;
 	background : url("../img/bg_button_blue.gif");
 }
+
+#login {
+	margin-left:40px;width:174px;height:38px;background-color:#639D75; border-radius:5px; text-align:center;
+}
+
+#login:hover {
+	background-color:#8ee1a8;
+}
