@@ -68,9 +68,15 @@ body {
 }
 
 #login {
-	margin-left:40px;width:174px;height:38px;background-color:#639D75; border-radius:5px; text-align:center;
+	margin-left:40px;
+	width:174px;
+	height:38px;
+	background-color:#FF7373;
+	border-radius:5px;
+	text-align:center;
+	display: block;
 }
 
 #login:hover {
-	background-color:#8ee1a8;
+	background-color:#FF8C8C;
 }
