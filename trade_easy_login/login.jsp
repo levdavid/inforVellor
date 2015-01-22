@@ -406,7 +406,7 @@ request.getSession().setAttribute("language","message_en_US");
 			     								<td  class="loginTdLeft"></td>
 			     								<td  class="loginTdRight" style="padding-top:18px;">
 			     										<div name="login" id="login"  onclick="usersub();">
-			     												<span class="noSelect" style="color:white;font-family: '微软雅黑';font-size:18px;position:relative;" ><fmt:message key="common.login" bundle="${messages}"/></span>
+			     												<span class="noSelect" style="color:white;font-family: '微软雅黑';font-size:18px;position:relative;padding-top:7px;" ><fmt:message key="common.login" bundle="${messages}"/></span>
 			     										</div>
 			     								</td>
 			     							</tr>
