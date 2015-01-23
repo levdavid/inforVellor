@@ -181,7 +181,7 @@ request.getSession().setAttribute("language","message_en_US");
 								$("#user_pass").val("");
 								myRandReload();
 							}else if("4"  == data){
-								$.messager.alert('提示','验证码不正确！','info');
+								$.messager.alert('提示','The identity code is not correct！','info');
 								$("#loginWait").empty();
 								$("#loginWait").append("<input type=\"button\" name=\"login\" class=\"dl\" value=\"登录\" onclick=\"javascript:usersub();\"/>");
 								myRandReload();
@@ -252,23 +252,23 @@ request.getSession().setAttribute("language","message_en_US");
 	}
 	} 
 
-	$(function(){
+	/*$(function(){
 	$("#submintButton").mouseover(function(){
 	$(this).addClass('btnCursorOver');
-	 $("#submintButton").css("background-image","url(${pageContext.request.contextPath }/static/img/yblogo/loginClickBg.png)");
+	 $("#submintButton").css("background-color","#FF8C8C");
 	});
 	$("#submintButton").mouseout(function(){
 	$(this).removeClass('btnCursorOver');
-	$("#submintButton").css("background-image","url(${pageContext.request.contextPath }/static/img/yblogo/loginBg.png)");
+	$("#submintButton").css("background-color","#FF7373");
 	});
 	$("#login").mouseover(function(){
 	$(this).addClass('btnCursorOver');
-	 $("#login").css("background-image","url(${pageContext.request.contextPath }/static/img/yblogo/loginClickBg.png)");
+	 $("#login").css("background-color","#FF8C8C");
 	});
-	$("#login").mouseout(function(){
+	/*$("#login").mouseout(function(){
 	$(this).removeClass('btnCursorOver');
-	$("#login").css("background-image","url(${pageContext.request.contextPath }/static/img/yblogo/loginBg.png)");
-	});
+	$("#login").css("background-color","#FF7373");
+	});*/
 	})
 
 	function changeTab(){
@@ -405,8 +405,13 @@ request.getSession().setAttribute("language","message_en_US");
 			     							<tr>
 			     								<td  class="loginTdLeft"></td>
 			     								<td  class="loginTdRight" style="padding-top:18px;">
-			     										<div name="login" id="login"  onclick="usersub();">
-			     												<span class="noSelect" style="color:white;font-family: '微软雅黑';font-size:18px;position:relative;padding-top:7px;" ><fmt:message key="common.login" bundle="${messages}"/></span>
+			     										<div name="login" id="login"  onclick="usersub();" style="margin-left:40px;
+	width:100px;
+	height:38px;
+	background-color:#FF7373;
+	border-radius:5px;
+	text-align:center;"">
+			     												<span  style="color:white;font-family: '微软雅黑';font-size:18px;position:relative;padding-top:7px;" ><fmt:message key="common.login" bundle="${messages}"/></span>
 			     										</div>
 			     								</td>
 			     							</tr>
