@@ -7,7 +7,7 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-
+  
 <%
 	TokenProcessorUtil tokemProcessor=TokenProcessorUtil.getInstance();
     tokemProcessor.saveToken(request);
@@ -87,29 +87,7 @@ request.getSession().setAttribute("language","message_en_US");
 		text-decoration: underline;
 	}
  </style>
- <!-- 添加滚动条开始 -->
- 	<style type="text/css"> 
-		#gongao{width:100%;margin:0px auto; min-width:960px;float:none; *width:expression((this.offsetWidth < 960) ? (this.width = 960 +'px') : true); height:30px;overflow:hidden;line-height:30px;font-size:13px;font-family:'宋体';background:#DDE5ED;color:#ec5565;font-weight:bold;} 
-		#gongao #scroll_begin, #gongao #scroll_end{display:inline} 
-	</style> 
-	<script type="text/javascript"> 
-		function ScrollImgLeft(){ 
-			var speed=50; 
-			var scroll_begin = document.getElementById("scroll_begin"); 
-			var scroll_end = document.getElementById("scroll_end"); 
-			var scroll_div = document.getElementById("scroll_div"); 
-			scroll_end.innerHTML="&nbsp;&nbsp;&nbsp;"+scroll_begin.innerHTML; 
-			function Marquee(){ 
-				if(scroll_end.offsetWidth-scroll_div.scrollLeft<=0) 
-					scroll_div.scrollLeft-=scroll_begin.offsetWidth; 
-				else 
-					scroll_div.scrollLeft++; 
-			} 
-			var MyMar=setInterval(Marquee,speed); 
-			scroll_div.onmouseover=function() {clearInterval(MyMar);} 
-			scroll_div.onmouseout=function() {MyMar=setInterval(Marquee,speed);} 
-		} 
-	</script> 
+
  <!-- 添加滚动条结束 -->
  <script type="text/javascript">
   $(function(){
@@ -133,21 +111,21 @@ request.getSession().setAttribute("language","message_en_US");
 	    	$.post("${ctx}/userLogin",{loginName:v,language:'chinese'},
 				function(data){
 		    		if("2" == data){
-						$.messager.alert('提示','密码不正确！','info');
+						$.messager.alert('<fmt:message key="common.Prompt" bundle="${messages}"/>','<fmt:message key="common.passiscorr" bundle="${messages}"/>','info');
 					}else if("3" == data){
-						$.messager.alert('提示','用户名不存在！','info');
+						$.messager.alert('<fmt:message key="common.Prompt" bundle="${messages}"/>','<fmt:message key="common.Usernotexist" bundle="${messages}"/>','info');
 					}else if("5"  == data){
-						$.messager.alert('提示','对不起,该用户已经在其他地方登录,请您采用其他账号登录！请联系<a class="kefuMenu1" href="http://wpa.qq.com/msgrd?v=3&uin=2949978339&site=qq&menu=yes" target="_blank">在线客服</a>','info');
+						$.messager.alert('<fmt:message key="common.Prompt" bundle="${messages}"/>','<fmt:message key="common.usenotplacelogin" bundle="${messages}"/>,<fmt:message key="common.pleaseContact" bundle="${messages}"/><a class="kefuMenu1" href="http://wpa.qq.com/msgrd?v=3&uin=2949978339&site=qq&menu=yes" target="_blank"><fmt:message key="common.customerService" bundle="${messages}"/></a>','info');
 					}else if("1"==data){
 						location.href = "${ctx}/goToIndex";
 					}else if("6"==data){
-						$.messager.alert('提示','对不起!您当前的地址不是您经常登录的地址,暂时无法登录!请联系<a class="kefuMenu1" href="http://wpa.qq.com/msgrd?v=3&uin=2949978339&site=qq&menu=yes" target="_blank">在线客服</a>','info');
+						$.messager.alert('<fmt:message key="common.Prompt" bundle="${messages}"/>','<fmt:message key="common.addisnotlogin" bundle="${messages}"/>,<fmt:message key="common.pleaseContact" bundle="${messages}"/><a class="kefuMenu1" href="http://wpa.qq.com/msgrd?v=3&uin=2949978339&site=qq&menu=yes" target="_blank"><fmt:message key="common.customerService" bundle="${messages}"/></a>','info');
 					}else if("7"==data){
-						$.messager.alert('提示','对不起!您的账户已被禁用!请联系<a class="kefuMenu1" href="http://wpa.qq.com/msgrd?v=3&uin=2949978339&site=qq&menu=yes" target="_blank">在线客服</a>','info');
+						$.messager.alert('<fmt:message key="common.Prompt" bundle="${messages}"/>','<fmt:message key="common.hasbeendisabled" bundle="${messages}"/>,<fmt:message key="common.pleaseContact" bundle="${messages}"/><a class="kefuMenu1" href="http://wpa.qq.com/msgrd?v=3&uin=2949978339&site=qq&menu=yes" target="_blank"><fmt:message key="common.customerService" bundle="${messages}"/></a>','info');
 					}else if("8"==data){
-						$.messager.alert('提示','对不起!您的账户没有激活 ！','info');
+						$.messager.alert('<fmt:message key="common.Prompt" bundle="${messages}"/>','<fmt:message key="common.isnotactive" bundle="${messages}"/>','info');
 					}else{
-						$.messager.alert('提示','对不起!您的账户被暂时锁定,请您稍后'+data+'登录！请联系<a class="kefuMenu1" href="http://wpa.qq.com/msgrd?v=3&uin=2949978339&site=qq&menu=yes" target="_blank">在线客服</a>','info');
+						$.messager.alert('<fmt:message key="common.Prompt" bundle="${messages}"/>','<fmt:message key="common.istemlocke" bundle="${messages}"/><fmt:message key="common.pleaseContact" bundle="${messages}"/><a class="kefuMenu1" href="http://wpa.qq.com/msgrd?v=3&uin=2949978339&site=qq&menu=yes" target="_blank"><fmt:message key="common.customerService" bundle="${messages}"/></a>','info');
 					}
 				}
 			);
@@ -168,47 +146,47 @@ request.getSession().setAttribute("language","message_en_US");
 			$.post("${ctx}/userLogin",{loginName:loginName,loginPassword :loginPassword,regCode:regCode,rPassword:rPassword,language:'chinese'},
 							function(data){
 							if("2" == data){
-								$.messager.alert('提示','密码不正确！','info');
+								$.messager.alert('<fmt:message key="common.Prompt" bundle="${messages}"/>','<fmt:message key="common.passiscorr" bundle="${messages}"/>','info');
 								$("#loginWait").empty();
 								$("#loginWait").append("<input type=\"button\" name=\"login\" class=\"dl\" value=\"登录\" onclick=\"javascript:usersub();\"/>");
 								$("#user_pass").val("");
 								myRandReload();
 							}
 							else if("3" == data){
-								$.messager.alert('提示','用户名不存在！','info');
+								$.messager.alert('<fmt:message key="common.Prompt" bundle="${messages}"/>','<fmt:message key="common.Usernotexist" bundle="${messages}"/>','info');
 								$("#loginWait").empty();
 								$("#loginWait").append("<input type=\"button\" name=\"login\" class=\"dl\" value=\"登录\" onclick=\"javascript:usersub();\"/>");
 								$("#user_pass").val("");
 								myRandReload();
 							}else if("4"  == data){
-								$.messager.alert('提示','The identity code is not correct！','info');
+								$.messager.alert('<fmt:message key="common.Prompt" bundle="${messages}"/>','The identity code is not correct!','info');
 								$("#loginWait").empty();
 								$("#loginWait").append("<input type=\"button\" name=\"login\" class=\"dl\" value=\"登录\" onclick=\"javascript:usersub();\"/>");
 								myRandReload();
 							}else if("5"  == data){
-								$.messager.alert('提示','对不起,该用户已经在其他地方登录,请您采用其他账号登录！请联系<a class="kefuMenu1" href="http://wpa.qq.com/msgrd?v=3&uin=2949978339&site=qq&menu=yes" target="_blank">在线客服</a>','info');
+								$.messager.alert('<fmt:message key="common.Prompt" bundle="${messages}"/>','<fmt:message key="common.usenotplacelogin" bundle="${messages}"/>,<fmt:message key="common.pleaseContact" bundle="${messages}"/><a class="kefuMenu1" href="http://wpa.qq.com/msgrd?v=3&uin=2949978339&site=qq&menu=yes" target="_blank"><fmt:message key="common.customerService" bundle="${messages}"/></a>','info');
 								$("#loginWait").empty();
 								$("#loginWait").append("<input type=\"button\" name=\"login\" class=\"dl\" value=\"登录\" onclick=\"javascript:usersub();\"/>");
 								myRandReload();
 							}else if("1"==data){
 								location.href = "${ctx}/goToIndex";
 							}else if("6"==data){
-								$.messager.alert('提示','对不起!您当前的地址不是您经常登录的地址,暂时无法登录!请联系<a class="kefuMenu1" href="http://wpa.qq.com/msgrd?v=3&uin=2949978339&site=qq&menu=yes" target="_blank">在线客服</a>','info');
+								$.messager.alert('<fmt:message key="common.Prompt" bundle="${messages}"/>','<fmt:message key="common.addisnotlogin" bundle="${messages}"/>,<fmt:message key="common.pleaseContact" bundle="${messages}"/><a class="kefuMenu1" href="http://wpa.qq.com/msgrd?v=3&uin=2949978339&site=qq&menu=yes" target="_blank"><fmt:message key="common.customerService" bundle="${messages}"/></a>','info');
 								$("#loginWait").empty();
 								$("#loginWait").append("<input type=\"button\" name=\"login\" class=\"dl\" value=\"登录\" onclick=\"javascript:usersub();\"/>");
 								myRandReload();
 							}else if("7"==data){
-								$.messager.alert('提示','对不起!您的账户已被禁用!请联系<a class="kefuMenu1" href="http://wpa.qq.com/msgrd?v=3&uin=2949978339&site=qq&menu=yes" target="_blank">在线客服</a>','info');
+								$.messager.alert('<fmt:message key="common.Prompt" bundle="${messages}"/>','<fmt:message key="common.hasbeendisabled" bundle="${messages}"/>,<fmt:message key="common.pleaseContact" bundle="${messages}"/><a class="kefuMenu1" href="http://wpa.qq.com/msgrd?v=3&uin=2949978339&site=qq&menu=yes" target="_blank"><fmt:message key="common.customerService" bundle="${messages}"/></a>','info');
 								$("#loginWait").empty();
 								$("#loginWait").append("<input type=\"button\" name=\"login\" class=\"dl\" value=\"登录\" onclick=\"javascript:usersub();\"/>");
 								myRandReload();
 							}else if("8"==data){
-								$.messager.alert('提示','对不起!您的账户没有激活 ！','info');
+								$.messager.alert('<fmt:message key="common.Prompt" bundle="${messages}"/>','<fmt:message key="common.isnotactive" bundle="${messages}"/>','info');
 								$("#loginWait").empty();
 								$("#loginWait").append("<input type=\"button\" name=\"login\" class=\"dl\" value=\"登录\" onclick=\"javascript:usersub();\"/>");
 								myRandReload();
 							}else{
-								$.messager.alert('提示','对不起!您的账户被暂时锁定,请您稍后'+data+'登录！请联系<a class="kefuMenu1" href="http://wpa.qq.com/msgrd?v=3&uin=2949978339&site=qq&menu=yes" target="_blank">在线客服</a>','info');
+								$.messager.alert('<fmt:message key="common.Prompt" bundle="${messages}"/>','<fmt:message key="common.istemlocke" bundle="${messages}"/>,<fmt:message key="common.pleaseContact" bundle="${messages}"/><a class="kefuMenu1" href="http://wpa.qq.com/msgrd?v=3&uin=2949978339&site=qq&menu=yes" target="_blank"><fmt:message key="common.customerService" bundle="${messages}"/></a>','info');
 								$("#loginWait").empty();
 								$("#loginWait").append("<input type=\"button\" name=\"login\" class=\"dl\" value=\"登录\" onclick=\"javascript:usersub();\"/>");
 								$("#user_pass").val("");
@@ -221,7 +199,7 @@ request.getSession().setAttribute("language","message_en_US");
 	 function checkCode(){
 			var txt = $("#checkcode").val();
 			if(txt.trim() == null||"" == txt.trim()){
-				$.messager.alert('提示','验证码不能够为空！','info');
+				$.messager.alert('<fmt:message key="common.Prompt" bundle="${messages}"/>','The identity code！','info');
 				return false;
 			}
 			return true;
@@ -252,7 +230,7 @@ request.getSession().setAttribute("language","message_en_US");
 	}
 	} 
 
-	/*$(function(){
+	$(function(){
 	$("#submintButton").mouseover(function(){
 	$(this).addClass('btnCursorOver');
 	 $("#submintButton").css("background-color","#FF8C8C");
@@ -265,10 +243,10 @@ request.getSession().setAttribute("language","message_en_US");
 	$(this).addClass('btnCursorOver');
 	 $("#login").css("background-color","#FF8C8C");
 	});
-	/*$("#login").mouseout(function(){
+	$("#login").mouseout(function(){
 	$(this).removeClass('btnCursorOver');
 	$("#login").css("background-color","#FF7373");
-	});*/
+	});
 	})
 
 	function changeTab(){
@@ -305,22 +283,7 @@ request.getSession().setAttribute("language","message_en_US");
 
 </head>
   <body onload="displaytimedown()" style="padding:0px;">
-   <!-- 添加滚动条开始 -->
-    <div id="gongao"> 
-		<div style="width:90%;height:30px;margin:0 auto;white-space: nowrap;overflow:hidden;" id="scroll_div" class="scroll_div"> 
-			<div id="scroll_begin"> 
-				<fmt:message key="common.browerTips" bundle="${messages}"/>
-				&nbsp;&nbsp;&nbsp;
-				<fmt:message key="common.browerTips" bundle="${messages}"/>
-				&nbsp;&nbsp;&nbsp;
-				<fmt:message key="common.browerTips" bundle="${messages}"/> 
-				&nbsp;&nbsp;&nbsp;
-				<fmt:message key="common.browerTips" bundle="${messages}"/> 
-			</div> 
-			<div id="scroll_end"></div> 
-		</div> 
-		<script type="text/javascript">ScrollImgLeft();</script> 
-	</div> 
+
 	 <!-- 添加滚动条结束 -->
     <div id="loginDiv">
      	<div id="loginTop">
@@ -328,9 +291,8 @@ request.getSession().setAttribute("language","message_en_US");
      	</div>
      	<!-- change language -->
      	<div style="position:absolute;top:40px;right: 60px;">
-     	     
      	     <span class="commonStyle" style="float:left;"><fmt:message key="common.selectLanguage" bundle="${messages}"/></span>
-		 	 <select id="sellanguage" style="width: 100px;float:left;" name="sellanguage" onchange="onChangeLanguage(this)">
+		 	 <select id="sellanguage" style="width: 120px;margin-left:5px;margin-top:-4px;float:left;" name="sellanguage" onchange="onChangeLanguage(this)">
 		        <option value="pleaseSelect" selected="selected"><fmt:message key="common.pleaseSelect" bundle="${messages}"/></option>
 		        <option value="message_zh_CN"><fmt:message key="common.chinese" bundle="${messages}"/></option>
 		        <option value="message_en_US"><fmt:message key="common.english" bundle="${messages}"/></option>
@@ -341,11 +303,12 @@ request.getSession().setAttribute("language","message_en_US");
      	<div id="main">
      		<div id="main_left">
 		     		<div id="mainTab" >
+		     			<!-- inside text -->
 		     			<%--
 		     			<div id="loginTab" class="tabstyle tabThreeBorder noSelect" style="width:64px;padding-right:30px;" onmouseover="$(this).addClass('tabCursorOver')" onmouseout="$(this).removeClass('tabCursorOver')" onclick="changeTab()">
 		     			--%>
-		     			<div id="loginTab" class="tabstyle tabThreeBorder noSelect" style="width:64px;padding-right:30px;">
-		     				<span class="commonStyle" style="position:relative;top:15px;left:30px"><fmt:message key="common.login" bundle="${messages}"/></span>
+		     			<div id="loginTab" class="tabstyle tabThreeBorder noSelect" style="width:64px;padding-left:10px;padding-right:10px;text-align:center;">
+		     				<span class="commonStyle" style="position:relative;top:15px;"><fmt:message key="common.login" bundle="${messages}"/></span>
 		     			</div>
 		     			<%--
 		     			<div id="registerTab" class="tabstyle tabOneBorder noSelect" style="width:88px;"  onmouseover="$(this).addClass('tabCursorOver')" onmouseout="$(this).removeClass('tabCursorOver')" onclick="changeTab()">
@@ -385,7 +348,7 @@ request.getSession().setAttribute("language","message_en_US");
 			   										<div style="margin-bottom:14px;">
 			   										<input type="text" name="checkCode" id="checkcode" class="check"   style="border:1px solid #959595;width: 110px;height:24px;margin-top:0px;margin-bottom:0px;"  tabindex="10" style="padding-top: 18px;height: 15px;"/>
 			   										<a href="#" onClick="javascript:myRandReload()" alt="<fmt:message key="common.pleaseClickRegenerate" bundle="${messages}"/>" title="<fmt:message key="common.pleaseClickRegenerate" bundle="${messages}"/>" class="img" style="margin-top: 5px;"> 
-													<img align="bottom" id="createcheckcode" style="width:100px;height:28px;" border="0">
+													<img align="bottom" id="createcheckcode" style="width:100px;height:28px;margin-left:10px;" border="0">
 													</a>
 													<a id="bjc" href="javascript:myRandReload()" style="text-decoration: none;color:#4a97e3;margin-left:5px;">
 													<img title="<fmt:message key="common.refreshCode" bundle="${messages}"/>" src="${pageContext.request.contextPath }/static/img/refresh.png"/>
@@ -397,27 +360,26 @@ request.getSession().setAttribute("language","message_en_US");
 			     								<td  class="loginTdLeft">
 			     								</td>
 			     								<td  class="loginTdRight">
-				     								<input type="checkbox" tabindex="90" value="forever" style="margin-top:0px;width:24px;height:16px;border:1px solid #959595;" id="rPassword" name="rPassword">
+				     								<input type="checkbox" tabindex="90" value="forever" style="margin-top:0px;margin-bottom:5px;width:24px;height:14px;border:1px solid #959595;" id="rPassword" name="rPassword">
 				     								<label for="rPassword" class="minFont" ><fmt:message key="common.automaticLoginNext" bundle="${messages}"/></label>		
-													<span style="float:right;"><a id="wjmm"   class="minFont"  onmousemove="over();" onmouseout="out();" href="${pageContext.request.contextPath }/view/accout/acount/pwd.jsp" style="text-decoration: none;color:#4a97e3 "><fmt:message key="common.forgetPassword" bundle="${messages}"/></a></span>
+													<span style="float:right; margin-right: 10px;"><a id="wjmm"   class="minFont"  onmousemove="over();" onmouseout="out();" href="${pageContext.request.contextPath }/view/accout/acount/pwd.jsp" style="text-decoration: none;color:#4a97e3 "><fmt:message key="common.forgetPassword" bundle="${messages}"/></a></span>
 			     								</td>
 			     							</tr>
 			     							<tr>
 			     								<td  class="loginTdLeft"></td>
 			     								<td  class="loginTdRight" style="padding-top:18px;">
-			     										<div name="login" id="login"  onclick="usersub();" style="margin-left:40px;
-	width:100px;
-	height:38px;
-	background-color:#FF7373;
-	border-radius:5px;
-	text-align:center;"">
-			     												<span  style="color:white;font-family: '微软雅黑';font-size:18px;position:relative;padding-top:7px;" ><fmt:message key="common.login" bundle="${messages}"/></span>
+			     										<div name="login" id="button"  onclick="usersub();">
+			     												<span  style="font-size:18px;" ><fmt:message key="common.login" bundle="${messages}"/></span>
 			     										</div>
 			     								</td>
 			     							</tr>
 		     							</table>
 		     						</form>
 		     			</div>
+		     			
+		     			
+		     			<!-- registration starts here -->
+		     			
 		     			<div id="registerBody"  style="display:none;height:100%;">
 		     					<form id="regForm" name="regForm"  method="post" action="/customer_search/registerUser" >
 			     					<div>
@@ -443,6 +405,7 @@ request.getSession().setAttribute("language","message_en_US");
 			     										
 			     							</div>
 			     					</div>
+			     			
 			     						
 			     					<div>
 			     							<div class="regTdOne">
