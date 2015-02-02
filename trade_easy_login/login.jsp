@@ -46,6 +46,7 @@ request.getSession().setAttribute("language","message_en_US");
 <link rel="stylesheet" type="text/css"	href="${pageContext.request.contextPath }/static/js/easyui/themes/icon.css">
 <link rel="stylesheet" type="text/css"	href="${pageContext.request.contextPath }/static/js/easyui/demo.css">
 <link rel="stylesheet" type="text/css"	href="${pageContext.request.contextPath }/static/css/tabLogin.css">
+<link rel="stylesheet" type="text/css"	href="${pageContext.request.contextPath }/static/css/login.css">
 <script language="javascript" src="${pageContext.request.contextPath }/static/js/checksystem.js"></script>
 <script type="text/javascript" 	src="${pageContext.request.contextPath }/static/js/jquery/jquery-1.8.2.min.js"></script>
 <link href="${pageContext.request.contextPath }/static/bootstrap/css/bootstrap.css" rel="stylesheet">
@@ -254,57 +255,8 @@ request.getSession().setAttribute("language","message_en_US");
 
 	$(function(){
 	$("#submintButton").mouseover(function(){
-	$(this).addClass('btnCursorOver');
-	 $("#submintButton").css("background-image","url(${pageContext.request.contextPath }/static/img/yblogo/loginClickBg.png)");
-	});
-	$("#submintButton").mouseout(function(){
-	$(this).removeClass('btnCursorOver');
-	$("#submintButton").css("background-image","url(${pageContext.request.contextPath }/static/img/yblogo/loginBg.png)");
-	});
-	$("#login").mouseover(function(){
-	$(this).addClass('btnCursorOver');
-	 $("#login").css("background-image","url(${pageContext.request.contextPath }/static/img/yblogo/loginClickBg.png)");
-	});
-	$("#login").mouseout(function(){
-	$(this).removeClass('btnCursorOver');
-	$("#login").css("background-image","url(${pageContext.request.contextPath }/static/img/yblogo/loginBg.png)");
-	});
-	})
-
-	function changeTab(){
-		if($("#loginBody").is(":visible")){
-			$("span.regMessage").empty();
-			$("#loginBody").hide();
-			$("#registerBody").show();
-			$("#registerTab").removeClass("tabOneBorder");
-			$("#registerTab").addClass("tabThreeBorder");
-			$("#loginTab").removeClass("tabThreeBorder");
-			$("#loginTab").addClass("tabOneBorder");
-		}else{
-			$("#registerBody").hide();
-			$("#loginBody").show();
-			$("#loginTab").removeClass("tabOneBorder");
-			$("#loginTab").addClass("tabThreeBorder");
-			$("#registerTab").removeClass("tabThreeBorder");
-			$("#registerTab").addClass("tabOneBorder");
-		}
-	}
-	function onChangeLanguage(v)
-	{
-	 	$.ajax({
- 		type:'post',
-        url : "/customer_search/language/changelanguage?language="+v.value,
-         	success : function(data)
-         	{
-                  window.location.reload();
- 		    }
- 	    });
-			
-	}
-</script>
-
-</head>
-  <body onload="displaytimedown()" style="padding:0px;">
+	$(this).addClass('btnCursorOve
+	down()" style="padding:0px;">
    <!-- 添加滚动条开始 -->
     <div id="gongao"> 
 		<div style="width:90%;height:30px;margin:0 auto;white-space: nowrap;overflow:hidden;" id="scroll_div" class="scroll_div"> 
