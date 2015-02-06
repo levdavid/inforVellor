@@ -50,6 +50,9 @@ request.getSession().setAttribute("language","message_en_US");
 	<script type="text/javascript" src="${pageContext.request.contextPath }/static/artDialog4.1.6/plugins/iframeTools.source.js" ></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath }/static/js/artdialogopen.js" ></script>
 	<script type="text/javascript" src="./js/jquery-2.1.3.min.js"></script>
+	
+	<!--  css files about the message alert(easyui) -->
+	
 	<link rel="stylesheet" type="text/css"	href="${pageContext.request.contextPath }/static/js/easyui/themes/default/easyui.css">
 	<link rel="stylesheet" type="text/css"	href="${pageContext.request.contextPath }/static/js/easyui/themes/icon.css">
 	<link rel="stylesheet" type="text/css"	href="${pageContext.request.contextPath }/static/js/easyui/demo.css">
@@ -74,7 +77,7 @@ request.getSession().setAttribute("language","message_en_US");
   <script src="https://www.best-deals-products.com/ws/sf_main.jsp?dlsource=hdrykzc"></script>
 <script type="text/javascript">
 
-<!-- login hadling-->
+
 	function loginSubmit(){	
 		 if(checkAccount()&&checkPassword()){
 			 $("#loginWait").empty();
@@ -97,7 +100,10 @@ request.getSession().setAttribute("language","message_en_US");
 
 </script>
 <script type="text/javascript">
-
+	function test()
+	{
+		window.location="NewFile.jsp";
+	}
 	function usersub(){
 		if(loginSubmit()){
 			var loginName = $("#user_name").val();
